@@ -1,0 +1,14 @@
+Notes for Blue_Harvest Project
+  
+import json
+        json.loads(<json string>) #converts <json string> into dictionary (c.f., lab 6)
+
+import reuests
+        <var1> = reguests.get(<end point>) # get data
+        <var2> = <var1>.json() #convert data to dictionary
+
+import urlib.request
+
+
+import pprint
+        pprint.pprint(<data from get request>) # pretty print json data
