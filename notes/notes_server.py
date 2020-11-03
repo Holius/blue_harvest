@@ -1,5 +1,4 @@
 # An object of Flask class
-print("hello")
 from flask import Flask, redirect, url_for, render_template
 
 # to redirect to another url -- first argumment must be a route defined by the string passed
@@ -35,23 +34,8 @@ def admin():
     return "admin"
 
 
-@app.route("/hello/<name>")
-def show_name(name):
-
-    if name == "justin":
-        return redirect(url_for("admin"))
-    return f"Hello {name}"
-
-
 if __name__ == "__main__":
     localhost = "127.0.0.1"
     port = 3000
     app.run(host=localhost, port=port)  # runs sever
     # app.run(host=localhost, port=port, debug=True) # DEBUG MODE
-
-
-# basic try/except
-##try:
-##do the stuff
-##except Exception as err:
-##return err

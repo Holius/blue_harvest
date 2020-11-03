@@ -1,0 +1,68 @@
+.amphora {
+    display: grid;
+    grid-template-rows: 20vh max-content;
+}
+
+.amphora-contents {
+    background-color: lightblue;
+}
+
+.amphora-ingredients {
+    background-color: lightcoral;
+    display: grid;
+    /* grid-gap: 20px; */
+    gap: 10px;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.amphora-ingredients--card {
+    display: grid;
+    position: relative;
+    grid-template-rows: min-content 150px min-content;
+    grid-template-columns: 100%;
+}
+
+.amphora-ingedients--image {
+    height: 150px;
+    width: 150px;
+    background-color: coral;
+    place-self: center;
+}
+
+.amphora-ingredients--list {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    text-align: center;
+    background-color: cornflowerblue;
+    overflow-y: auto;
+    font-size: 1.2rem;
+}
+
+.amphora-ingredients--list>li:nth-child(odd) {
+    background-color: grey;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.amphora-ingredients--list>li:nth-child(even) {
+    background-color: cornflowerblue;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.amphora-ingredients--list>li:hover {
+    background-color: darkblue;
+}
+
+.amphora-ingredients--ingredient {}
+
+.amphora-ingredients--title {
+    font-size: 1.5rem;
+    background-color: darkblue;
+    text-align: center;
+}

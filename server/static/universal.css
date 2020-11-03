@@ -1,0 +1,25 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+:root {
+    --orange: rgb(255, 180, 84);
+    --dark_blue: rgb(45, 51, 79);
+}
+
+body {
+    background-color: var(--dark_blue);
+    color: white;
+    display: grid;
+    grid-template-rows: 20vh auto;
+    grid-auto-columns: 100vw;
+
+}
+
+header {
+    color: var(--orange);
+    display: grid;
+    place-items: center;
+    font-size: x-large;
+}

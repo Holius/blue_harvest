@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='default/default.css') }}">
+
+    <title>Home</title>
+  </head>
+  <body>
+    <header>Euphrosyne</header>
+    <div class="amphora">
+      <div class="amphora-contents">
+      </div>
+      <div class="amphora-ingredients">
+        {% for category in collection %}
+            <div class="amphora-ingredients--card">
+            <div class="amphora-ingredients--title">{{category}}</div>
+            <div class="amphora-ingedients--image">Picture</div>
+              <ul class="amphora-ingredients--list">  
+            {% for ingredient in collection[category] %}
+              <li>{{ingredient}}</li>
+            {% endfor %}
+              </ul>
+          </div>
+        {% endfor %}
+              </div>
+    </div>
+
+  </body>
+</html>
