@@ -1,25 +1,46 @@
-* {
-    padding: 0px;
-    margin: 0px;
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
 :root {
+    /* colors */
+    --light_blue: rgb(103, 184, 181);
     --orange: rgb(255, 180, 84);
     --dark_blue: rgb(45, 51, 79);
+    --red: rgb(233, 40, 50);
+    --white: white;
+    --light_grey: rgb(242, 242, 242);
+    --dark_grey: rgb(77, 77, 79);
+    /* columns in .amphora-contents */
+    --columnContents: 5
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: var(--dark_blue);
+    background-color: var(--dark_grey);
     color: white;
     display: grid;
     grid-template-rows: 20vh auto;
     grid-auto-columns: 100vw;
-
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
 }
 
 header {
-    color: var(--orange);
+    color: var(--dark_grey);
+    background-color: var(--dark_grey);
+    /* background-color: var(--light_blue); */
     display: grid;
     place-items: center;
-    font-size: x-large;
+    font-size: 3rem;
+    color: var(--light_blue);
+    font-family: 'Anton', sans-serif;
 }

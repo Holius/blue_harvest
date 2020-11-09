@@ -1,16 +1,67 @@
+header {
+    position: relative;
+}
+
 .amphora {
     display: grid;
-    grid-template-rows: 20vh max-content;
+    grid-template-rows: max-content max-content;
 }
 
 .amphora-contents {
     background-color: lightblue;
+    display: grid;
+    grid-template-columns: repeat(var(--columnContents), 1fr);
+    grid-template-rows: 20vh;
+    grid-auto-rows: 20vh;
+    place-items: center;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.amphora-contents>* {
+    padding: 15px;
+    background-color: var(--dark_grey);
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.amphora-nav {
+    position: absolute;
+    bottom: 0vh;
+    left: 0vh;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-gap: 5px;
+}
+
+.amphora-search {
+    padding: 4px;
+    background-color: var(--red);
+    cursor: pointer;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-family: 'Anton', sans-serif;
+
+}
+
+.amphora-home {
+    padding: 4px;
+    background-color: var(--red);
+    cursor: pointer;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-family: 'Anton', sans-serif;
 }
 
 .amphora-ingredients {
-    background-color: lightcoral;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    background-color: --var(dark_grey);
     display: grid;
-    /* grid-gap: 20px; */
     gap: 10px;
     grid-auto-rows: min-content;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -23,10 +74,10 @@
     grid-template-columns: 100%;
 }
 
-.amphora-ingedients--image {
+.amphora-ingredients--image {
     height: 150px;
-    width: 150px;
-    background-color: coral;
+    width: auto;
+    max-width: 100%;
     place-self: center;
 }
 
@@ -38,31 +89,45 @@
     height: 100%;
     list-style: none;
     text-align: center;
-    background-color: cornflowerblue;
+    background-color: var(--light_blue);
     overflow-y: auto;
     font-size: 1.2rem;
+    transition: all 0.5s;
+}
+
+.amphora-ingredients--list_close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0px 5px;
+    background-color: var(--red);
+    transform: translateY(-100%);
+    display: none;
+    visibility: hidden;
+    cursor: pointer;
 }
 
 .amphora-ingredients--list>li:nth-child(odd) {
-    background-color: grey;
+    background-color: rgb(202, 202, 202);
     padding-top: 6px;
     padding-bottom: 6px;
+    cursor: pointer;
 }
 
 .amphora-ingredients--list>li:nth-child(even) {
-    background-color: cornflowerblue;
     padding-top: 6px;
     padding-bottom: 6px;
+    cursor: pointer;
 }
 
 .amphora-ingredients--list>li:hover {
-    background-color: darkblue;
+    background-color: rgb(117, 117, 117);
 }
 
 .amphora-ingredients--ingredient {}
 
 .amphora-ingredients--title {
     font-size: 1.5rem;
-    background-color: darkblue;
+    background-color: var(--red);
     text-align: center;
 }

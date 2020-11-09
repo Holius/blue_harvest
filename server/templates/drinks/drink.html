@@ -1,0 +1,19 @@
+<!-- {
+    "instruction": str,
+    "image": str,
+    "ingredients": [[0,1]...]
+} -->
+
+<div class="modal-foreground" style="background-image:url('{{drink["image"]}}');">
+    <div class="modal-instruction">{{drink["instruction"]}}</div>
+    <!-- <img class="modal-image" src="{{drink["image"]}}"> -->
+    <div class="modal-ingredients">
+        {% for ingredients in drink["ingredients"] %}
+            <div class="modal-ingredient--pair"> 
+                     {{ingredients[0]}}{% if ingredients[1]|length > 0 %} ☛ {{ingredients[1]}}{% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="modal-back">✖</div>
+    <div class="modal-name">{{drink["name"]}}</div>
+</div>

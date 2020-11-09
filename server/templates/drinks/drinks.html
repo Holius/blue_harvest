@@ -1,0 +1,12 @@
+<!-- strDrinkThumb = https://www.thecocktaildb.com/images/media/drink/ysuqus1441208583.jpg'
+idDrink = 12474
+strDrink = White Lady -->
+
+<div class="amphora-drinks">
+    {% for drink in drinks %}
+        <div class="amphora-drinks--drink" id="{{drink["idDrink"]}}">
+            <img src="{{drink["strDrinkThumb"]}}" alt="{{drink["strDrink"]}}" class="amphora-drinks--image" >
+            <div class="amphora-drinks--title">{{drink["strDrink"]}}</div>
+        </div>
+    {% endfor %}
+</div>

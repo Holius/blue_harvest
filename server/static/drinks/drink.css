@@ -1,0 +1,74 @@
+.modal-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 19;
+    display: none;
+    transition: all 2.5s;
+}
+
+.modal-foreground {
+    background-color: black;
+    /* var(--white); */
+    position: fixed;
+    /* width: 60vh; */
+    /* height: max-content;
+    max-height: 60vh; */
+    min-height: 60vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-rows: min-content, min-content;
+    place-items: center;
+    /* background-size: contain; */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.modal-instruction {
+    grid-column: 2;
+    grid-row: 1;
+    overflow: auto;
+    padding: 15px;
+    max-width: 60vh;
+    background-color: rgba(77, 77, 79, 0.5);
+    width: 100%;
+    text-align: center;
+}
+
+.modal-ingredients {
+    grid-column: 2;
+    grid-row: 2;
+    overflow: auto;
+    background-color: rgba(77, 77, 79, 0.5);
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-ingredient--pair {}
+
+.modal-back {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0px 5px;
+    background-color: var(--red);
+    transform: translateY(-100%);
+    cursor: pointer;
+}
+
+.modal-name {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 5px;
+    background-color: var(--red);
+    transform: translateY(-100%);
+}

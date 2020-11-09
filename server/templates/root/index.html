@@ -5,28 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='default/default.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='drinks/drinks.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='drinks/drink.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
 
     <title>Home</title>
   </head>
   <body>
-    <header>Euphrosyne</header>
-    <div class="amphora">
-      <div class="amphora-contents">
+    <header>Euphrosyne's Libations
+      <div class="amphora-nav test">
+        <div class="amphora-home">Ingredients</div>
+        <div class="amphora-search">Search</div>
       </div>
+    </header>
+    <div class="modal-background"></div>
+    <div class="amphora">
+      <div class="amphora-contents" style="background-image: url(http://127.0.0.1:5500/static/amphora_banner.jpg)"></div>
       <div class="amphora-ingredients">
         {% for category in collection %}
             <div class="amphora-ingredients--card">
             <div class="amphora-ingredients--title">{{category}}</div>
-            <div class="amphora-ingedients--image">Picture</div>
-              <ul class="amphora-ingredients--list">  
-            {% for ingredient in collection[category] %}
+            <img class="amphora-ingredients--image" alt="{{category}}" src="http://127.0.0.1:5500/static/ingredients/{{category}}.jpg">
+            <ul class="amphora-ingredients--list">  
+              {% for ingredient in collection[category] %}
               <li>{{ingredient}}</li>
-            {% endfor %}
-              </ul>
+              {% endfor %}
+            </ul>
+            <div class="amphora-ingredients--list_close">✖</div>
           </div>
         {% endfor %}
-              </div>
+      </div>
     </div>
-
+  
+  
   </body>
+  <script type="text/javascript" src="{{ url_for('static', filename='default/dispatchers.js')}}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='default/default.js')}}"></script>
+
 </html>

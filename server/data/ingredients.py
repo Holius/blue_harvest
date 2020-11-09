@@ -1,7 +1,7 @@
 def list_ingredients():
     ingredients = {
         "Rum": ["light rum", "dark rum", "añejo rum", "rum", "spiced rum"],
-        "Assorted Alcohol": [
+        "Assorted": [
             "applejack",
             "triple sec",
             "amaretto",
@@ -46,7 +46,7 @@ def list_ingredients():
             "angelica root",
         ],
         "Water": ["water", "carbonated water"],
-        "Dairy/Egg": [
+        "Dairy&Eggs": [
             "milk",
             "yoghurt",
             "heavy cream",
@@ -54,7 +54,7 @@ def list_ingredients():
             "egg",
         ],
         "Wine": ["champagne", "red wine"],
-        "Fortified Wine": ["dubonnet rouge", "port", "sherry"],
+        "Fortified": ["dubonnet rouge", "port", "sherry"],
         "Coffee": [
             "coffee liqueur",
             "kahlua",
