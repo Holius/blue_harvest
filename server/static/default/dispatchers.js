@@ -158,7 +158,6 @@ const navigate_to_drink = args => {
 }
 
 const navigate_to_modal = args => {
-    console.log(args)
     const [foreground] = args
     const background = document.querySelector('.modal-background')
     background.appendChild(foreground)
@@ -167,8 +166,18 @@ const navigate_to_modal = args => {
     toggleSwitch([background], 'on')  
 }
 
+//stopgap solution
+const try_close_modal = elm => {
+    try {
+        if (elm.target.className === 'modal-background' || elm.target.className === 'modal-back') return true
+    }
+    catch {
+        return false
+    }
+}
+
 const close_modal = e => {
-    if (e.target.className !== 'modal-background' && e.target.className !== 'modal-back') return console.log('close_modal did not receive a valid click event') //todo development
+    if (!try_close_modal(e)) return
     background = e.target.className ==='modal-background' ? e.target : e.target.parentElement.parentElement
     background.querySelector('.modal-foreground').remove()
     toggleSwitch([background], 'off')
@@ -178,22 +187,6 @@ const close_modal = e => {
 //toggleSwitch(elms,on/off)
 
 
-// const traverse_DOM = (dom = document.querySelector('body')) => {
-//     const elements = Set(), classes = Set(), id = Set()
-//     const inner = (current) => {
-//         children = current.children
-//         if (!children.length) return
-//         for (let i = 0; i < children.length; i++) {
-//             const child = children[i]
-//             if (child.localname !== 'script') {
-//                 process_child_attributes(elements, classes, id)
-//                 inner(child)
-//             } 
-//         }
-//     }
-//     inner(dom)
-//     return [elements, classes, id]
-// }
 
 const get_all_nodes_in_element = (dom = document.querySelector('body')) => {
     const nodes = [dom]

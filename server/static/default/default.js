@@ -2,6 +2,9 @@
 ////clicking search should take state.current_open_cards and close all of them.
 ////clicking ingredients should clear all ingredients 
 
+//extra
+////style scroll bar
+
 //super extra
 ////picture slides down out of view to reveal drink list
 const log = i => console.log(i)

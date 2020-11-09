@@ -10,6 +10,7 @@ from livereload import Server
 # default route
 from routes.default import render_default
 import requests
+from env import api_key
 
 # to redirect to another url -- first argumment must be a route defined by the string passed
 ##redirect(url_for(<url to redirect to>))
@@ -49,7 +50,7 @@ def default():
 
 @app.route("/ingredients/<parameter>")
 def get_drinks(parameter):
-    url_base = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="
+    url_base = f"https://www.thecocktaildb.com/api/json/v2/{api_key}/filter.php?i="
     url_base += parameter
     drinks = requests.get(url_base).json()
     drinks = drinks["drinks"]
@@ -86,7 +87,7 @@ def process_drink_dictionary(d):
 # strMeasure[1...] = corresponding measurement (if none = null)
 @app.route("/drink/<id>")
 def get_drink(id):
-    url_base = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="
+    url_base = f"https://www.thecocktaildb.com/api/json/v2/{api_key}/lookup.php?i="
     url_base += id
     drink = requests.get(url_base).json()
     drink = process_drink_dictionary(drink["drinks"][0])
