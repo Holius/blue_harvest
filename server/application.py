@@ -31,7 +31,7 @@ from env import api_key
 
 
 # Flask constructor takes the name of current
-app = Flask(__name__, template_folder="./templates")
+application = app = Flask(__name__, template_folder="./templates")
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 
@@ -54,6 +54,8 @@ def get_drinks(parameter):
     url_base += parameter
     drinks = requests.get(url_base).json()
     drinks = drinks["drinks"]
+    if isinstance(drinks, str):
+        return "<div class='no-results'>Uh-oh! Drinks with all of those ingredients were not found.<div>"
     # cache.clear()  # todo development
     return render_template("drinks/drinks.html", drinks=drinks)
     # return jsonify(data=drinks) ##sends json to frontend
@@ -94,28 +96,8 @@ def get_drink(id):
     return render_template("drinks/drink.html", drink=drink)
 
 
-@app.context_processor
-def utility_functions():
-    def print_in_console(message):
-        print(str(message))
-
-    return dict(mdebug=print_in_console)
-
-
-@app.after_request
-def add_header(r):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    r.headers["Pragma"] = "no-cache"
-    r.headers["Expires"] = "0"
-    r.headers["Cache-Control"] = "public, max-age=0"
-    return r
-
-
 if __name__ == "__main__":
+    # app.run(debug=True)
     app.debug = True
     server = Server(app.wsgi_app)
     server.serve()
@@ -125,10 +107,3 @@ if __name__ == "__main__":
     # app.run(host=localhost, port=port)  # runs sever
     # app.run(host=localhost, port=port, debug=True) # DEBUG MODE
     # """
-
-
-# basic try/except
-##try:
-##do the stuff
-##except Exception as err:
-##return err

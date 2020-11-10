@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
+    <!-- artist for icon below -->
+    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+    <link rel="icon" href="static/amphora.png"  type="image/icon type">
+
 
     <title>Home</title>
   </head>
@@ -22,12 +26,12 @@
     </header>
     <div class="modal-background"></div>
     <div class="amphora">
-      <div class="amphora-contents" style="background-image: url(http://127.0.0.1:5500/static/amphora_banner.jpg)"></div>
+      <div class="amphora-contents" style="background-image: url(/static/amphora_banner.jpg)"></div>
       <div class="amphora-ingredients">
         {% for category in collection %}
             <div class="amphora-ingredients--card">
             <div class="amphora-ingredients--title">{{category}}</div>
-            <img class="amphora-ingredients--image" alt="{{category}}" src="http://127.0.0.1:5500/static/ingredients/{{category}}.jpg">
+            <img class="amphora-ingredients--image" alt="{{category}}" src="/static/ingredients/{{category}}.jpg">
             <ul class="amphora-ingredients--list">  
               {% for ingredient in collection[category] %}
               <li>{{ingredient}}</li>
@@ -39,7 +43,9 @@
       </div>
     </div>
   
-  
+  <footer>
+    <div class="footer-message">BROWSE RESPONSIBLY. </div>
+  </footer>
   </body>
   <script type="text/javascript" src="{{ url_for('static', filename='default/dispatchers.js')}}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='default/default.js')}}"></script>

@@ -64,14 +64,14 @@ const handle_api_call = (args) => {
 }
 
 const get_html = (args) => {
-    [parameters, endpoint, cb] = args
+    [parameters, endpoint, cb, promise_resolver] = args
     fetch(`/${endpoint}/${parameters}`)
     .then(response => response.text())
     .then(html => {
         const parser = new DOMParser();
         return parser.parseFromString(html, 'text/html').querySelector('div')
     }).then(elm => { 
-        cb([elm])
+        cb([elm], promise_resolver)
     })
 }
 
@@ -130,24 +130,27 @@ const handle_navigation = (args, elm) => {
 }
 
 //[state.amphora_ingredients]
-const navigate_to_replacement = args => {
+const navigate_to_replacement = (args, promise_resolver) => {
     let [replacement] = args
     const current = document.querySelector('.amphora')
     //could be a better solution to search for the classname that would be preseent opposed to the lastElement Child
     if (current.lastElementChild === replacement) return console.log('Replacement are already loaded') //todo development
     current.lastElementChild.remove()
     current.appendChild(replacement)
+    if (promise_resolver) promise_resolver('success')
 }
+
 //state.last_search, state.current_ingredients
-const navigate_to_search_results = args => {
-    let [last_search, ingredients] = args
+const navigate_to_search_results = args => {   
+    let [last_search, ingredients, open_cards] = args
     //could add message for when there are no ingredients
     if (!ingredients.length) return console.log ('No ingredients are present to search.') //todo development
     query = ingredients.map(ingredient => ingredient.replace(' ', '_')).join(',')
     if (last_search === ingredients) return console.log('Last search was the same.  Already displaying results') //todo development
     state.last_search = query //todo refactor --> hardcoded because state.last_search is <type str> and is therefore pass by value
     //API call [parameters, endpoint, cb]
-    dispatch('api', ['list_drinks', query, 'ingredients', navigate_to_replacement])
+    //async behavior ensures the DOM is updated with new content before handling the state of the ingredients component
+    new Promise ((resolve,reject) => dispatch('api', ['list_drinks', query, 'ingredients', navigate_to_replacement, resolve])).then(a =>  toggleSwitch(open_cards, 'off')).catch(err => console.log(err))
 }
 
 
@@ -181,65 +184,4 @@ const close_modal = e => {
     background = e.target.className ==='modal-background' ? e.target : e.target.parentElement.parentElement
     background.querySelector('.modal-foreground').remove()
     toggleSwitch([background], 'off')
-}
-//add eventlistener to modal background to close it
-////cb should be same for close button and modal background
-//toggleSwitch(elms,on/off)
-
-
-
-const get_all_nodes_in_element = (dom = document.querySelector('body')) => {
-    const nodes = [dom]
-    const inner = (current) => {
-        children = [...current.children]
-        children.forEach( child => {
-            if (child.localName !== 'script') { 
-            nodes.push(child)
-            if (child.children.length) inner(child)
-            }
-        })
-    }
-    inner(dom)
-    return nodes
-}
-
-const try_stylesheet = (stylesheet) => {
-    try {
-        stylesheet['cssRules'] //failed look ups throw an error
-        return true
-    } catch {
-        return false
-    }
-}
-
-//document.styleSheets gets all stylesheets in document (including ones without cssRules)
-const get_all_style_rules = (stylesheets = document.styleSheets) => {
-    const rules = []
-    for (let stylesheet of stylesheets) {
-        if (try_stylesheet(stylesheet)) { //handles the case of the stylesheet not containing css rules
-            for (let rule of stylesheet['cssRules']) {
-                rules.push(rule.selectorText)
-            }
-        }
-    }
-    return rules
-}
-
-const get_all_rules_not_applied = (rules = get_all_style_rules(), dom = get_all_nodes_in_element()) => {
-    const matchless = []
-    rules.forEach(rule => {
-        for (let element of dom) {
-            if (element.matches(rule)) return //matches method returns true if CSS selector string would apply to element
-        }
-        matchless.push(rule)
-    })
-    return matchless
-}
-
-const get_all_rules_applied_to_element = (elm, rules = get_all_style_rules(), ) => {
-    const applied = []
-    rules.forEach(rule => {
-        if (elm.matches(rule)) applied.push(rule)
-    })
-    return applied
 }

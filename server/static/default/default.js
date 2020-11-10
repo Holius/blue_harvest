@@ -1,13 +1,8 @@
 //expected behavior
 ////clicking search should take state.current_open_cards and close all of them.
-////clicking ingredients should clear all ingredients 
-
-//extra
-////style scroll bar
 
 //super extra
 ////picture slides down out of view to reveal drink list
-const log = i => console.log(i)
 
 const state = {
     amphora_contents: document.querySelector(".amphora-contents"),
@@ -81,7 +76,7 @@ const main = () => {
     add_event(document.querySelectorAll('.amphora-ingredients--image'), dispatch, 'click', 'open_close', ['ingredient_card', 'open', state.current_open_cards])
     add_event(document.querySelectorAll('.amphora-ingredients--list_close'), dispatch, 'click', 'open_close', ['ingredient_card', 'close', state.current_open_cards])
     add_event([document.querySelector('.amphora-home')], dispatch, 'click', 'navigation', ['replacement', state.amphora_ingredients])
-    add_event([document.querySelector('.amphora-search')], dispatch, 'click', 'navigation', ['search', state.last_search, state.current_ingredients])
+    add_event([document.querySelector('.amphora-search')], dispatch, 'click', 'navigation', ['search', state.last_search, state.current_ingredients, state.current_open_cards])
     document.querySelector('.modal-background').addEventListener('click', close_modal)
     document.querySelector('body').addEventListener('click', e => {
         const css =['amphora-drinks--title', 'amphora-drinks--image']  

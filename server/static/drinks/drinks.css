@@ -17,6 +17,11 @@
     position: relative;
     grid-template-columns: 100%;
     grid-template-rows: 20vh;
+    transition: all 0.25s
+}
+
+.amphora-drinks--drink:hover {
+    transform: translateY(-10px);
 }
 
 .amphora-drinks--image {
