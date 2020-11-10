@@ -150,7 +150,12 @@ const navigate_to_search_results = args => {
     state.last_search = query //todo refactor --> hardcoded because state.last_search is <type str> and is therefore pass by value
     //API call [parameters, endpoint, cb]
     //async behavior ensures the DOM is updated with new content before handling the state of the ingredients component
-    new Promise ((resolve,reject) => dispatch('api', ['list_drinks', query, 'ingredients', navigate_to_replacement, resolve])).then(a =>  toggleSwitch(open_cards, 'off')).catch(err => console.log(err))
+    const children_cards = []
+    open_cards.forEach(card => {
+        children_cards.push(card.querySelector('ul'))
+        children_cards.push(card.querySelector('.amphora-ingredients--list_close'))
+})
+    new Promise ((resolve,reject) => dispatch('api', ['list_drinks', query, 'ingredients', navigate_to_replacement, resolve])).then(a =>  toggleSwitch(children_cards, 'off')).catch(err => console.log(err))
 }
 
 

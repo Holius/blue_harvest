@@ -12,32 +12,15 @@ from routes.default import render_default
 import requests
 from env import api_key
 
-# to redirect to another url -- first argumment must be a route defined by the string passed
-##redirect(url_for(<url to redirect to>))
-##from flask import Flask, redirect, url_for
+# credit to cocktail db for providing an affordable API
+# https://www.thecocktaildb.com/api.php
 
-# default is get method (when not specified)
-##app.route(<endpoint/route>, methods = [<"POST">,<"GET">])
-
-# to have different endpoints route to the same location have app.route stacked on the same function to call
-## @app.route(<endpoint 1>)
-## @app.route(<endpoint 2>)
-## function to call for both endpoints
-
-# inside function for route
-##request.method --> returns method
-##request.form.get(<param str>) --> returns <param> if exists in request form --> POST
-##request.args.get(<param str>) --> returns <param> if exists in parameters --> GET
-
+# credit to unsplash for free and great pictures
+# https://unsplash.com/
 
 # Flask constructor takes the name of current
 application = app = Flask(__name__, template_folder="./templates")
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
-
-
-# root of webserver calls hello_world
-# app.add_url_rule(endpoint/route, rule_name, function) --> ("/", "root", main())
-##alternate way to write line below
 
 
 @app.route("/")
@@ -97,10 +80,11 @@ def get_drink(id):
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    app.debug = True
-    server = Server(app.wsgi_app)
-    server.serve()
+    app.run(debug=True)
+
+    # app.debug = True
+    # server = Server(app.wsgi_app)
+    # server.serve()
     # """
     # localhost = "127.0.0.1"
     # port = 5500

@@ -19,12 +19,13 @@ def list_ingredients():
         "Scotch": ["scotch"],
         "Sugar": ["sugar", "demerara sugar", "sugar syrup"],
         "Whiskey": [
+            "whiskey",
+            "jack daniels",
             "southern comfort",
             "blended whiskey",
             "bourbon",
             "irish whiskey",
             "johnnie walker",
-            "whiskey",
         ],
         "Bitters": ["bitters", "orange bitters"],
         "Brandy": [
@@ -97,6 +98,6 @@ def list_ingredients():
             "cocoa powder",
             "chocolate",
         ],
-        "Soda": ["sprite", "7-up"],
+        "Soda": ["coca-cola", "sprite", "7-up"],
     }
     return ingredients
